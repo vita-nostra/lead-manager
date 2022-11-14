@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ProcessLead;
 use App\Models\Lead;
 use App\Models\Partner;
 use Illuminate\Http\Request;
@@ -39,6 +40,8 @@ class LeadController extends Controller
         $lead->sending = false;
 
         $lead->save();
+
+        ProcessLead::dispatch($lead);
 
         return response([
             "status" => "success"
