@@ -14,12 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('leads', function (Blueprint $table) {
-            $table->uuid('id')->default();
+            $table->uuid('id')->primary();
             $table->string('name');
             $table->string('phone');
             $table->bigInteger('partner_id')->unsigned()->nullable();
             $table->foreign('partner_id')->references('id')->on('partners');
             $table->boolean('sending');
+            $table->timestamps();
         });
     }
 

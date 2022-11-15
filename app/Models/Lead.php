@@ -11,9 +11,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property $phone
  * @property $partner_id
  * @property $sending
+ * @property $created_at
+ * @property $updated_at
  */
 class Lead extends Model
 {
     use HasFactory, HasUuids;
-    public $timestamps = false;
 }

@@ -36,14 +36,13 @@ class ProcessLead implements ShouldQueue
     public function handle()
     {
         /** @var Partner|null $partner */
-        $partner = Partner::where('id', $this->lead->partner_id)->first();
-
+        $partner = Partner::where('id', $this->lead->partner_id)->value('utm_source');
 
         $response = Http::post(config('app.lead_service_url'), [
             'name' => $this->lead->name,
             'phone' => $this->lead->phone,
             'partner_id' => $this->lead->partner_id,
-            'utm_source' => $partner->utm_source
+            'utm_source' => $partner
         ]);
 
         if($response->successful()) {

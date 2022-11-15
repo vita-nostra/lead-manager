@@ -29,13 +29,11 @@ class LeadController extends Controller
         $lead->name = $validated["name"];
         $lead->phone = $validated["phone"];
 
-        /** @var Partner|null $partner */
-        $partner = Partner::where('utm_source', $validated["utm_source"])->first();
-        if ($partner !== null) {
-            $lead->partner_id = $partner->id;
-        } else {
-            $lead->partner_id = null;
+        $partner = null;
+        if (!empty($validated["utm_source"])) {
+            $partner = Partner::where('utm_source', $validated["utm_source"])->value('id');
         }
+        $lead->partner_id = $partner;
 
         $lead->sending = false;
 
