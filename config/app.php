@@ -212,4 +212,10 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
+    /*
+    | Адрес сервиса для отправки лидов
+    */
+
+    'lead_service_url' => env('LEAD_SERVICE_URL')
+
 ];
